@@ -1,0 +1,16 @@
+---
+# tasks file for Load_Balancer
+
+
+
+- name: "Installing Reverse Proxy Server 'Haproxy'"
+  package:
+          name: "haproxy"
+          state: present
+
+- name: "Configuration Of Haproxy"
+  template:
+          dest: "/etc/haproxy/haproxy.cfg"
+          src: "haproxy.cfg"
+  notify: haproxy service
+          

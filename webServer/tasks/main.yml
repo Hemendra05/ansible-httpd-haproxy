@@ -1,0 +1,20 @@
+---
+# tasks file for Web_Server
+
+
+- name: "Installing HTTPD Apache Web Server"
+  package:
+          name: "httpd"
+          state: present
+
+- name: "Starting HTTPD Service"
+  service:
+          name: "httpd"
+          state: started 
+          enabled: yes
+
+- name: "Copying The Content To Document Root Folder"
+  copy:
+          dest: /var/www/html/index.html
+          content: "This Is For Load Balancer For IP {{ ansible_facts['default_ipv4']['address'] }}"
+
